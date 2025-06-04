@@ -28,3 +28,17 @@ dotnet test TicketAvailability.sln
 ```
 
 The tests include scenarios with high contention to ensure only one lock succeeds when many requests compete for the same seat.
+
+## Large venues
+
+The tests include cases that load thousands of `SeatGrain` instances to simulate very large venues. Each seat is activated in the silo and verified to be available and lockable. This demonstrates that Orleans can manage many grains in memory without additional infrastructure.
+
+## Architecture
+
+```mermaid
+graph TD
+    A[ASP.NET Core Web API] -->|uses| B{Orleans Silo}
+    B --> C[SeatGrain]
+    B --> D[In-memory Grain Storage]
+    A --> E[Memory Cache]
+```
