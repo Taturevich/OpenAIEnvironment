@@ -14,15 +14,17 @@ dotnet run --project TicketAvailability.UI
 dotnet run --project TicketAvailability.Web
 ```
 
+Kestrel will listen on `http://localhost:5162` for the Blazor UI and `http://localhost:5086` (or `https://localhost:7257`) for the Web API. These values are configured in each project's `Properties/launchSettings.json` and can be adjusted as needed.
+
 The API exposes endpoints to check availability, lock and unlock seats:
 
 - `GET /seats/{eventId}/{seatId}` – returns the availability of a seat.
 - `POST /seats/{eventId}/{seatId}/lock` – attempts to lock the seat (returns 200 on success or 409 when already locked).
 - `POST /seats/{eventId}/{seatId}/unlock` – unlocks the seat.
 
-Swagger UI is enabled during development at `https://localhost:5001/swagger`.
+Swagger UI is enabled during development at `https://localhost:7257/swagger` when using the `https` profile (or `http://localhost:5086/swagger` when using `http`).
 
-The Blazor UI can be accessed at `https://localhost:5000` when running the `TicketAvailability.UI` project. It presents a simple seat map synced with the Orleans silo. Selecting a seat will attempt to lock it in real time.
+The Blazor UI can be accessed at `http://localhost:5162` when running the `TicketAvailability.UI` project. It presents a simple seat map synced with the Orleans silo. Selecting a seat will attempt to lock it in real time.
 
 Screenshots have been removed from the repository to keep binary assets out of source control.
 
