@@ -7,7 +7,10 @@ This repository contains a simple ASP.NET Core application using the Orleans fra
 Ensure you have the .NET 8 SDK installed. From the repository root run:
 
 ```bash
-# restore and run the web application
+# restore and run the Blazor UI
+dotnet run --project TicketAvailability.UI
+
+# in a separate terminal run the API if needed
 dotnet run --project TicketAvailability.Web
 ```
 
@@ -18,6 +21,10 @@ The API exposes endpoints to check availability, lock and unlock seats:
 - `POST /seats/{eventId}/{seatId}/unlock` – unlocks the seat.
 
 Swagger UI is enabled during development at `https://localhost:5001/swagger`.
+
+The Blazor UI can be accessed at `https://localhost:5000` when running the `TicketAvailability.UI` project. It presents a simple seat map synced with the Orleans silo. Selecting a seat will attempt to lock it in real time.
+
+Screenshots have been removed from the repository to keep binary assets out of source control.
 
 ## Running tests
 
